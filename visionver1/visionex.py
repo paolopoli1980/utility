@@ -29,9 +29,8 @@ def ex1():
             for j in range(img.size[1]):
                 if im[i,j]!=numbercolor and im[i,j]!=0 and im[i,j]!=1:    
                     listpoint.append([i,j])
-                   # print im[i,j]    
-                   # print i
-                #print j    
+  
+    
         for i in range(img.size[0]):
             for  j in range(img.size[1]):
                 if im[i,j]==numbercolor:
@@ -46,7 +45,7 @@ def ex1():
             break
         if len(listpoint)>perc:
             casual=randint(0,len(listpoint))
-           #print listpoint
+           
             el+=1
             
             x=listpoint[casual][0]
@@ -72,10 +71,10 @@ def ex1():
                     
                     try:
                         while im[xnew,int(ynew)]<numbercolor:
-                           # print im[xnew,int(ynew)]
-                            #print "ostrega"
+                           
+                           
                             xnew=xnew+cos(alfainc)
-                            #ynew+=1
+                            
                             ynew=ynew+sin(alfainc)
                             dist=math.sqrt((x-xnew)**2+(y-ynew)**2)
                             if dist>massimo:
