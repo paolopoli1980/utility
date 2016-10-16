@@ -1,0 +1,14 @@
+(lp1
+S'paolo'
+p2
+aS'poli'
+p3
+aS'1111'
+p4
+aS'alberto'
+p5
+aS'biella'
+p6
+aS'3333'
+p7
+a.
