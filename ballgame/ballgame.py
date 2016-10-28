@@ -136,7 +136,7 @@ while win>0:
                 print "alt"
                              
                 if (wall[indexx][indexy]==1):
-                    #print "merda"
+                    
                     mindist=10000
                     for i in range(large):
                         for j in range(lenght):
