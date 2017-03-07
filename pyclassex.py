@@ -4,12 +4,15 @@ class unit():
 	def __init__(self):
 		self.x=0
 		self.y=0
+	def answer(self,j):
+		print "the unit number"+str(j)+"has" +str(obj[j].x)+"value"
+		if j!=l:
+			self.y+=1	
+
 	def met(self,nobj,l):
 		for j in range(nobj):
 			if obj[j].x>0:
-				print "the unit number"+str(j)+"has" +str(obj[j].x)+"value"
-				if j!=l:
-					self.y+=1	
+				self.answer(j)
 
 					
 		
