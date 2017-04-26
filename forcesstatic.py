@@ -34,6 +34,9 @@ def reading():
     
 maxlist=[]	
 metric=0
+maxlistx=[]
+maxlisty=[]
+maxlistz=[]
 
 readconstrained()
 print memfreeatoms
@@ -42,6 +45,9 @@ while stringa!="":
 	#print stringa[1:6]
     memstr=[]
     maxim=0
+    mx=0
+    my=0
+    mz=0
     
     
     if stringa[1:5]=='POSI':
@@ -59,12 +65,22 @@ while stringa!="":
                      ok=1
              if ((metric>maxim) and (ok==1)):
                  maxim=metric
-                 
+                 mx=float(keystr[3])                                        
+                 my=float(keystr[4])                                        
+                 mz=float(keystr[5])                                        
                      
              #print keystr[3]
-         maxlist.append(maxim)        
+         maxlist.append(maxim)    
+         maxlistx.append(mx)    
+         maxlisty.append(my)    
+         maxlistz.append(mz)    
+         
     #     pass
 print maxlist
 plot(maxlist)
+plot(maxlistx)
+plot(maxlisty)
+plot(maxlistz)
+
 show()
 f1.close()
