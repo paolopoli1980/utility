@@ -35,15 +35,12 @@ def charge_scenary(n):
             scenario[len(scenario)-1].label=file_extension[0]
             f1=open("sc"+str(n)+"/"+str(files))
             string="x"
-            #print string
             while string!="":
                 try:
                     string=f1.readline()
                     info=string.split(',')
                     scenario[len(scenario)-1].cordobj.append([float(info[0]),float(info[1])])
-                   # print "ola"+str(info[2])
                     scenario[len(scenario)-1].typeobj.append(str(info[2])[0:len(info[2])-1])
-                  #  print scenario[len(scenario)-1].typeobj
                     cont=0
                     cont2=0
                     cc=0
@@ -56,32 +53,20 @@ def charge_scenary(n):
                 cc+=1
                 liscopy=[]
                 liscopy=scenario[len(scenario)-1].cordobj[:]
-                #print liscopy
-               # print el
                 if el=='tree':
                     
                     scenario[len(scenario)-1].dimobj.append([wx,wy])
                 if el=='e1':
-                #    print "e1xxx"
-                 #   print el
                     scenario[len(scenario)-1].dimobj.append([wx,wy])
                     scenario[len(scenario)-1].lifeenemy.append(1)
                     print scenario[len(scenario)-1].lifeenemy 
-                  #  print scenario[len(scenario)-1].shotting[cont2]
-                   # print scenario[len(scenario)-1].cordobj[cont]
                     for i in range(5):
-    #                    print scenario[len(scenario)-1].shotting[cont2][i]
-     #                   print scenario[len(scenario)-1].cordobj[cont]
-
-                       # print "cis sono",i
                         val1=scenario[len(scenario)-1].cordobj[cont][0]
                         val2=scenario[len(scenario)-1].cordobj[cont][1]
                         
                         scenario[len(scenario)-1].shotting[cont2][i][0]=val1
                         scenario[len(scenario)-1].shotting[cont2][i][1]=val2
             
-                    #    print scenario[len(scenario)-1].cordobj[1]
-          #              scenario[len(scenario)-1].shotting[cont2][i]=liscopy[cont]
                         vers1=random.randint(-4,4)
                         vers2=random.randint(-4,4)
                         if vers1==0:
@@ -90,18 +75,13 @@ def charge_scenary(n):
                             vers2=1
                             
 
-                        #print vers
                         scenario[len(scenario)-1].typeshotting[cont2][i]=[vers1,vers2]
                     cont2+=1     
                 cont+=1        
 
     print cc                    
     for el in scenario:
- #       print el.label
-  #      print el.cordobj
         print el.typeobj
-        #print el.shotting
-        #print el.typeshotting
         print el.lifeenemy
         
     
@@ -170,7 +150,6 @@ while endscen==0:
     for k in range(len(shotherodirection)):
         if shotherodirection[k]=='r':
             shotherocoordinates[k][0]+=10
-            #print "value",shotherocoordinates[k][0]
  
         if shotherodirection[k]=='l':
             shotherocoordinates[k][0]-=10
@@ -190,17 +169,12 @@ while endscen==0:
         
         for el in scenario:
             if el.label==schema:
- #               print "ci sono"
                 cont=0
                 cont2=-1
-                #obj=[]
                 for elem in el.typeobj:
-  #                  print el.dimobj[cont]
-   #                 print shotherodirection[k]
                     if elem=="e1":
                         cont2+=1
                     if shotherocoordinates[k][0]>el.cordobj[cont][0] and shotherocoordinates[k][0]<el.cordobj[cont][0]+el.dimobj[cont][0] and shotherocoordinates[k][1]>el.cordobj[cont][1] and shotherocoordinates[k][1]<el.cordobj[cont][1]+el.dimobj[cont][1]:
-              #          print "beccato"
                         shotherodirection[k]=''
                         shotherocoordinates[k]=[-1,-1]
                         if elem=="e1":#sbagliato
@@ -221,16 +195,13 @@ while endscen==0:
             shotherocoordinates.append([x+wx/2,y+wy/2])
             shotherodirection.append(oldk)
         if len(shotherodirection)==5:
-           # print "x"
             cont=-1
             for el in shotherocoordinates:
                 cont+=1
                 if el==[-1,-1]:
-                   # print "ok"
                     shotherocoordinates[cont]=[x+wx/2,y+wy/2]
                     
                     shotherodirection[cont]=oldk
-               #     print shotherocoordinates[cont]
                     break
     xold=x
     yold=y
@@ -238,7 +209,6 @@ while endscen==0:
         x-=5
         oldk='l'
         
-#                key='l'
     if keys[K_d]:
         x+=5
         oldk='r'
@@ -251,8 +221,6 @@ while endscen==0:
         y+=5
         oldk='down'
 
- #               key='d'
-    #print x                      
     pygame.display.flip()
     screen.blit(background,(0,0))
     herobullets=[]
@@ -264,57 +232,34 @@ while endscen==0:
             obj=[]
             cont3=-1
             for elem in el.typeobj:
-                 #print elem
                 if elem=='tree':
                     cont+=1
                 if elem=='tree':
                     obj.append(pygame.image.load("sc"+str(n)+"/tree.png").convert())
-  #                  print "-----------",el.dimobj[cont][0],el.dimobj[cont][1]
                     obj[cont]=pygame.transform.scale(obj[cont], (el.dimobj[cont][0],el.dimobj[cont][1]))
- #                   print el.cordobj[cont][0],el.cordobj[cont][1]
                     screen.blit(obj[cont],(float(el.cordobj[cont][0]),float(el.cordobj[cont][1])))
-   #                 print elem
                     if x+wx>=float(el.cordobj[cont][0]) and x<=float(el.cordobj[cont][0])+el.dimobj[cont][0] and y+wy>=float(el.cordobj[cont][1]) and y<=float(el.cordobj[cont][1])+el.dimobj[cont][1]:
                         x=xold
                         y=yold
-#                        print "x,y",x,y
-                   # cont+=1
                 if elem=='e1':
                     cont3+=1
                     cont+=1
                     obj.append(pygame.image.load("sc"+str(n)+"/e1.jpg").convert())
 
-            #        print "cont3", cont3
 
                 if elem=='e1' and el.lifeenemy[cont3]>0:
-#                    if el.lifeenemy[cont3]>0:
-                        
-  #                  print "-----------",el.dimobj[cont][0],el.dimobj[cont][1]
-             #       print cont
-              #      print obj
                     obj[cont]=pygame.transform.scale(obj[cont], (el.dimobj[cont][0],el.dimobj[cont][1]))
- #                   print el.cordobj[cont][0],el.cordobj[cont][1]
                     screen.blit(obj[cont],(float(el.cordobj[cont][0]),float(el.cordobj[cont][1])))
-   #                 print elem
                     if x+wx>=float(el.cordobj[cont][0]) and x<=float(el.cordobj[cont][0])+el.dimobj[cont][0] and y+wy>=float(el.cordobj[cont][1]) and y<=float(el.cordobj[cont][1])+el.dimobj[cont][1]:
                         x=xold
                         y=yold
-#                        print "x,y",x,y
-                    #cont3+=1
-                    #cont+=1
                 elif elem=='e1' and el.lifeenemy[cont3]<=0:
-                   # del elem
-                   # del el.lifeenemy[cont3]
                     el.cordobj[cont][0]=-1
                     el.cordobj[cont][1]=-1
                     
-                    #cont+=1
-               # print "xont",cont
-               # print el.typeobj
                 
 
             cont2=-1
-           # cont=0
             cont3=-1
             cont4=-1
             for elem in el.typeobj:
@@ -325,21 +270,14 @@ while endscen==0:
                     
                 if elem=="e1" and el.lifeenemy[cont4]>0:
                    
-                #   print "sono in eq"
-                 #  print el.shotting
 #                   if el.lifeenemy[cont2]>0:
                    
                    for t in range(5):
-                      # print width,height,cont2
-                       #print el.shotting[1]
-                       #print el.shotting[cont2][t][0]
                        if el.shotting[cont2][t][0]>0 and el.shotting[cont2][t][0]<width and el.shotting[cont2][t][1]>0 and el.shotting[cont2][t][1]<height:
-                         #   print "caspita"
                              el.shotting[cont2][t][0]+=el.typeshotting[cont2][t][0]
                              el.shotting[cont2][t][1]+=el.typeshotting[cont2][t][1]
                              
      #                           el.cordobj[cont3][0]-=1
-                        #        print "okeydokey"
                              enemybullets.append(pygame.image.load("bullete1.png").convert())
                              enemybullets[len(enemybullets)-1]=pygame.transform.scale(enemybullets[len(enemybullets)-1], (2,2))
                                 #bullet_rect =herobullets[k].get_rect()
