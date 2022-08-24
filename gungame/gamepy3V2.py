@@ -114,6 +114,7 @@ numb=0
 obj=[]
 idhero="hero"
 start=True
+bulletsswitch=True
 while endscen==0:
     #pygame.time.Clock().tick(50)
     
@@ -236,12 +237,19 @@ while endscen==0:
     herobullets=[]
     enemybullets=[]
     cont3=-1
+    
     for el in scenario:
         if el.label==schema:
             cont=-1
            # print(numb,numbold,start)
+            if numb!=numbold:
+                bulletsswitch=False
+                #print (bulletsswitch)
+
+                
             if numb!=numbold or start==True:
                 obj=[]
+                
             cont3=-1
             for elem in el.typeobj:
                
@@ -319,14 +327,20 @@ while endscen==0:
         hero=pygame.image.load("hero2.png").convert()
         hero = pygame.transform.scale(hero, (wx, wy))
         screen.blit(hero,(x,y))
-        
+    
+
+      
     for k in range(len(shotherodirection)):
         herobullets.append(pygame.image.load("bullet.png").convert())
         herobullets[k]=pygame.transform.scale(herobullets[k], (2,2))
         bullet_rect =herobullets[k].get_rect()
- 
+        if bulletsswitch==False:
+            shotherocoordinates[k]=[-1,-1]
+            print (bulletsswitch)
+            
         screen.blit(herobullets[k],(shotherocoordinates[k][0],shotherocoordinates[k][1]))
-                             
+
+    bulletsswitch=True                         
     pygame.display.update()
             
     #time.sleep(0.001)
